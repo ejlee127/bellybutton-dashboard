@@ -18,16 +18,16 @@ Hulcr, J. et al.(2012) _A Jungle in There: Bacteria in Belly Buttons are Highly 
 
 ### Dashboard
 
-The dashboard[img](images/dashbord.png) showes three charts of the selected sample by a user.
+The dashboard([img](images/dashbord.png)) showes three charts of the selected sample by a user.
 
-A user can select a sample from the dropdown menu[img](images/select.png).
+A user can select a sample from the dropdown menu([img](images/select.png)).
 
 Given the sample id, the dashboard displays
 
-* Demographic Information[img](images/demo_info.png)
+* Demographic Information([img](images/demo_info.png))
 
-* Horizontal Bar Chart of 10 OTUs of top sample values[img](images/chart_bar.png)
+* Horizontal Bar Chart of 10 OTUs of top sample values([img](images/chart_bar.png))
 
-* Bubble Chart of all sample values[img](images/chart_bubble.png)
+* Bubble Chart of all sample values([img](images/chart_bubble.png))
 
-* Gauge Chart of Weekly Frequence of Scrubbing[img](images/chart_gauge.png)
+* Gauge Chart of Weekly Frequence of Scrubbing([img](images/chart_gauge.png))
