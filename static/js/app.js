@@ -91,7 +91,7 @@ function init(name, info, sample) {
 }
 
 // Load the sample names and initialize the charts
-d3.json("samples.json").then( (data) => {
+d3.json("data/samples.json").then( (data) => {
     
     names = data.names;
     
@@ -110,7 +110,7 @@ d3.json("samples.json").then( (data) => {
 
 // Action from 'selection' 
 function optionChanged(name) {
-    d3.json("samples.json").then( (data) => {
+    d3.json("data/samples.json").then( (data) => {
         // id in metadata : data type is integer
         var sampleInfo = data.metadata.filter( (sample) => sample.id === parseInt(name) )[0];
         demographicInfo(sampleInfo);
