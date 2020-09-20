@@ -5,7 +5,7 @@
         info: object, metadata of the sample
         sample: object, data for this sample - the otu_ids, otu_labels and sample_values
     */
-function init(name, info, sample){
+function init(name, info, sample) {
 
     //---- Display demographic info 
     demographicInfo(info);
@@ -48,7 +48,6 @@ function init(name, info, sample){
     };  
     Plotly.newPlot('bubble', data, layout);
 
-    console.log(info.wfreq);
     // ---- Init gauge chart with the given sample
     var gaugeStep = []
     for (var i=0; i<10; i++) {
@@ -58,29 +57,36 @@ function init(name, info, sample){
             name: `${i}-${i+1}`
         });
     }
-    console.log(gaugeStep);
 
-    var dataGauge = [{
-        type: "indicator",
-        mode: "gauge",
-        value: info.wfreq,
-        gauge: {
-            axis: { range: [null, 10], 
-                //tickwidth: 1, tickcolor: "darkblue" 
-            },
-            bar: { color: "rgb(0,76,153" },
-            bgcolor: "white",
-            borderwidth: 2,
-            bordercolor: "gray",
-            steps: gaugeStep,
-        }
-    }];
+    // using pie chart
+    var markerColors = ["rgb(255,255,255"];
+    var labelsG = [" "];
+    var valuesG = [10];
+    for (var i=0; i<10; i++) {
+        valuesG.push(1);
+        labelsG.push(`${i}-${i+1}`);
+        markerColors.push(`rgb(${245-i*5},${245-i*20},${220-i*20})`);
+    }
+
+    var data = [{
+        type: "pie",
+        values: valuesG,
+        marker: {colors: markerColors},
+        labels: labelsG,
+        textinfo: "label",
+        showlegend: false,
+        hole: 0.4,
+        direction: "clockwise",
+        rotation: 90
+      }]
 
     var layout = {
         title: `<b>Belly Button Washing Frequency</b><br> Scrubs per Week`,
-        width: 500, height: 300, margin: { t: 100, b: 0 }
+        width: 500, height: 500, margin: { t: 80, b: 0 }
     };
-    Plotly.newPlot("gauge", dataGauge, layout);
+    Plotly.newPlot("gauge", data, layout);
+
+    // Add a needle to the gauge
     gaugeNeedle(info.wfreq);
 }
 
@@ -88,7 +94,7 @@ function init(name, info, sample){
 d3.json("../../data/samples.json").then( (data) => {
     
     names = data.names;
-
+    
     // Add options for select tag   
     d3.select("#selDataset").selectAll("option")
         .data(names)
@@ -186,12 +192,12 @@ function sortSample(sample) {
 function gaugeNeedle(value) {
 
     // needle center & radius
-    var cx = 245;
-    var cy = 280;
-    var cr = 10;
+    var cx = 250;
+    var cy = 288;
+    var cr = 8;
     // needle length
-    var length = 130
-    // needle point angle clockwise
+    var length = 68
+    // needle translation angle
     var radians = Math.PI * value / 10
     // needle center translation
     var ox = -1 * cr * Math.cos(radians)
@@ -205,7 +211,7 @@ function gaugeNeedle(value) {
                         ${cx+oy}, ${cy+ox}
                         ${cx+px}, ${cy-py}`;
 
-    // Select svg-main class created by 'gauge' plot
+    // Select main-svg class created by 'gauge' plot
     var svg = d3.select("#gauge").select(".main-svg")
 
     // Remove previous needle
