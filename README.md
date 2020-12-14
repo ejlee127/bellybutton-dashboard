@@ -16,8 +16,8 @@ Hulcr, J. et al.(2012) _A Jungle in There: Bacteria in Belly Buttons are Highly 
 
 
 ### Dashboard
-
-The dashboard(![img](images/dashboard.png)) showes three charts of the selected sample by a user.
+![img](images/dashboard.png)
+The dashboard showes three charts of the selected sample by a user.
 
 A user can select a sample from the dropdown menu([img](images/select.png)).
 
